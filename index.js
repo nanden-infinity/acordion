@@ -3,8 +3,8 @@
 const buttons = document.querySelectorAll("h1 button");
 const description = document.querySelectorAll("dd");
 
-description[0].classList.add("acordion--active");
-buttons[0].classList.add("active");
+description[2].classList.add("acordion--active");
+buttons[2].classList.add("active");
 
 const openAcord = (event, i) => {
   document.querySelector(".active")?.classList.remove("active");
@@ -18,52 +18,30 @@ buttons.forEach((btn, i) =>
   btn.addEventListener("click", (event) => openAcord(event, i))
 );
 
-// const openAcordion = function ( target,index ) {
-//   const {target:button} = target
-// button.onfocus = (target) => {
-//    if(!target){
-//         console.log(document.activeElement === target);
-//         description[index].classList.toggle("acordion--active");
-//    }
-
-//   else{
-//     description[index].classList.remove("acordion--active");
-
-//   }
-// };
-//   const {description} = target
-//   button.classList.toggle('active')
-//   description[index].classList.toggle("acordion--active");
-// };
-
-// buttons.forEach((button,index) => button.addEventListener('click',({target})=>openAcordion({target,description},index,button)))
+const navTab = document.querySelector('.tab--nav')
+const tabSection = document.querySelectorAll('.painel')
+const init = function(){
+  // Getting All Elements into the Dom page
+  const activeTab = function(element,index){
+    element.addEventListener('click',function(event){
+    tabSection.forEach(tab => tab.classList.remove('active'))
+    document.querySelector('[data-menu="tab"] li.active')?.classList.remove('active')
+    console.log(event.currentTarget.querySelector('.row'))
+    console.log(event.currentTarget.classList.toggle('active'),index)
+    tabSection[index].classList.toggle('active')
+  })
+}
+  const listTab = document.querySelectorAll('.tab--nav li')
+  listTab[0].classList.add('active')
+    listTab.forEach((element,index) => activeTab(element,index))
 
 
 
-// description.forEach(descr => descr.classList.remove("acordion--active"));
-// const openAccordion = (button, index) => {
-//   // alterna a classe ativa no botão
-//   button.classList.toggle("active");
+}
 
-//   // alterna a descrição correspondente
-//   description[index].classList.toggle("acordion--active");
-// };
 
-// // Aplica o evento de clique em todos os botões
-// buttons.forEach((button, index) => {
-//   button.addEventListener("click", () => openAccordion(button, index));
 
-//   // Quando o botão ganha foco (por teclado, tab, etc.)
-//   button.addEventListener("focus", () => {
-//     document.querySelector(".acordion--active")?.classList.remove("acordion--active")
-//     description[index].classList.add("acordion--active");
-//   });
+if(navTab && tabSection.length){
+  init()
+}
 
-//   // Quando o botão perde foco
-//   button.addEventListener("blur", () => {
-//     document
-//       .querySelector(".acordion--active")
-//       ?.classList.remove("acordion--active");
-//     description[index].classList.remove("acordion--active");
-//   });
-// });
